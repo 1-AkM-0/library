@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <h1>Library</h1>
+    <div style="display: flex; justify-content: center">
+      <button id="showDialog">Add Book</button>
+    </div>
+    <div class="cards"></div>
+    <dialog id="dialog">
+      <form method="dialog" id="form">
+        <input type="text" name="title" id="" />
+        <input type="text" name="author" id="" />
+        <input type="number" name="pages" id="" />
+        <select name="read">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <button id="confirmBtn">Confirm</button>
+      </form>
+    </dialog>
+  </body>
+</html>
