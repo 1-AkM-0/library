@@ -5,7 +5,6 @@ const form = document.forms["form"];
 const dialog = document.getElementById("dialog");
 const openBtn = document.getElementById("showDialog");
 const confirmBtn = document.getElementById("confirmBtn");
-const deleteBtns = document.querySelectorAll(".delete");
 
 const inputTitle = form.elements["title"];
 const inputAuthor = form.elements["author"];
@@ -30,30 +29,56 @@ function Book(title, author, pages, read) {
 function addBookToLibrary(title, author, pages, read) {
   let newBook = new Book(title, author, pages, read);
   myBooks.push(newBook);
-
-  console.log(displayBooksId);
 }
 
 function seeBooks() {
   myBooks.forEach((book) => {
     if (!displayBooksId.includes(book.id)) {
-      const card = document.createElement("div");
-      card.innerText = `${book.title}, ${book.author}, ${book.pages}, ${book.read} `;
-      card.setAttribute("data-id", book.id);
       displayBooksId.push(book.id);
-      cardsSection.appendChild(card);
+      const tr = document.createElement("tr");
+      tr.setAttribute("data-id", book.id);
+      cardsSection.appendChild(tr);
+
+      let values = Object.values(book);
+      values.forEach((value) => {
+        if (book.id != value) {
+          let td = document.createElement("td");
+          td.innerText = value;
+          tr.appendChild(td);
+        }
+      });
+
+      handleDelete(tr);
     }
   });
+}
+function handleDelete(card) {
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("delete");
+  deleteBtn.textContent = "delete";
+
+  deleteBtn.addEventListener("click", () => {
+    card.remove();
+  });
+  card.appendChild(deleteBtn);
 }
 
 confirmBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  addBookToLibrary(
-    inputTitle.value,
-    inputAuthor.value,
-    inputPages.value,
+  if (
+    inputTitle.value &&
+    inputAuthor.value &&
+    inputPages.value &&
     inputRead.value
-  );
-  dialog.close();
+  ) {
+    addBookToLibrary(
+      inputTitle.value,
+      inputAuthor.value,
+      inputPages.value,
+      inputRead.value
+    );
+    dialog.close();
+    form.reset();
+  }
   seeBooks();
 });
