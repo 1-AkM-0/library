@@ -41,8 +41,17 @@ function seeBooks() {
 
       let values = Object.values(book);
       values.forEach((value) => {
+        let td = document.createElement("td");
         if (book.id != value) {
-          let td = document.createElement("td");
+          if (book.read == value) {
+            if (value == "yes") {
+              td.classList.add("read");
+            } else {
+              td.classList.add("unread");
+            }
+            td.textContent = value;
+            handleRead(td);
+          }
           td.innerText = value;
           tr.appendChild(td);
         }
@@ -52,6 +61,21 @@ function seeBooks() {
     }
   });
 }
+
+function handleRead(td) {
+  td.addEventListener("click", () => {
+    if (td.classList.contains("read")) {
+      td.classList.remove("read");
+      td.classList.add("unread");
+      td.textContent = "no";
+    } else {
+      td.classList.remove("unread");
+      td.classList.add("read");
+      td.textContent = "yes";
+    }
+  });
+}
+
 function handleDelete(card) {
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("delete");

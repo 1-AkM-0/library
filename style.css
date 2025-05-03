@@ -6,17 +6,35 @@
 
 body {
   height: 100vh;
+  background-color: aliceblue;
 }
 
 h1 {
   text-align: center;
+  margin-bottom: 2rem;
 }
+
+#showDialog {
+  margin-bottom: 3rem;
+  color: white;
+  background-color: rgb(57, 107, 151);
+
+  border: none;
+  border-radius: 8px;
+  padding: 1rem 2rem;
+}
+
+#showDialog:hover {
+  background-color: rgb(41, 78, 110);
+}
+
 .table {
   display: flex;
   justify-content: center;
 }
 
 table {
+  border: 1px solid black;
   border-collapse: collapse;
 }
 
@@ -26,6 +44,7 @@ th {
 
 th,
 td {
+  border: 1px solid black;
   padding: 0 5rem;
   text-align: center;
 }
@@ -34,4 +53,11 @@ td {
   display: flex;
   flex-direction: column;
   height: 50vh;
+}
+
+.delete {
+  background-color: red;
+  color: white;
+
+  padding: 1rem 2rem;
 }
