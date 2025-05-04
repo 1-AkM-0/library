@@ -77,6 +77,7 @@ function handleRead(td) {
 }
 
 function handleDelete(card) {
+  let td = document.createElement("td");
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("delete");
   deleteBtn.textContent = "delete";
@@ -84,7 +85,8 @@ function handleDelete(card) {
   deleteBtn.addEventListener("click", () => {
     card.remove();
   });
-  card.appendChild(deleteBtn);
+  card.appendChild(td);
+  td.appendChild(deleteBtn);
 }
 
 confirmBtn.addEventListener("click", (e) => {
